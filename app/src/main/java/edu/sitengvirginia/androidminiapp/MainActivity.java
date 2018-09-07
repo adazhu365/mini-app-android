@@ -1,15 +1,18 @@
 package edu.sitengvirginia.androidminiapp;
 
+//used idea from https://developer.android.com/guide/topics/ui/floating-action-button
+
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.support.design.widget.FloatingActionButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView myText;
-    private Button myButton;
+    private FloatingActionButton myButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
