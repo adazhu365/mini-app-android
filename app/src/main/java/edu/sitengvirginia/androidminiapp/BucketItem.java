@@ -42,8 +42,8 @@ public class BucketItem {
 
     public static ArrayList<BucketItem> createInitialBucketList() {
         ArrayList<BucketItem> initialList = new ArrayList<BucketItem>();
-        initialList.add(new BucketItem("first item", "whatever", "37.3", "38.4", "7/27/1997"));
-        initialList.add(new BucketItem("second item", "whatever2", "37.33", "38.44", "7/27/1998"));
+        initialList.add(new BucketItem("Last Year", "whatever", "37.3", "38.4", "2017/7/27"));
+        initialList.add(new BucketItem("This Year", "whatever2", "37.33", "38.44", "2018/7/28"));
         return initialList;
     }
 }

@@ -21,7 +21,7 @@ public class BucketListAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-
+        public TextView dateTextView;
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
@@ -29,7 +29,8 @@ public class BucketListAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.bucketItem);
+            nameTextView = (TextView) itemView.findViewById(R.id.bucketItemName);
+            dateTextView = (TextView) itemView.findViewById(R.id.bucketItemDate);
 
         }
     }
@@ -72,9 +73,12 @@ public class BucketListAdapter extends
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
-        String bucketdisplay = bucket.getMname() + "\n" + bucket.getMdescription()
-                + "\n" + bucket.getMlatitude() + "\n" + bucket.getMlongitude() + "\n" + bucket.getMdate();
-        textView.setText(bucketdisplay);
+        String bucketDisplay = bucket.getMname();
+        textView.setText(bucketDisplay);
+
+        TextView dateView = viewHolder.dateTextView;
+        String dateDisplay = bucket.getMdate();
+        dateView.setText(dateDisplay);
 
         }
 
