@@ -72,7 +72,9 @@ public class BucketListAdapter extends
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
-        textView.setText(bucket.getMname() + "\n" + bucket.getMdate());
+        String bucketdisplay = bucket.getMname() + "\n" + bucket.getMdescription()
+                + "\n" + bucket.getMlatitude() + "\n" + bucket.getMlongitude() + "\n" + bucket.getMdate();
+        textView.setText(bucketdisplay);
 
         }
 
