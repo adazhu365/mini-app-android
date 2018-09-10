@@ -9,15 +9,23 @@
     android:paddingBottom="10dp"
     tools:context=".BucketItem">
 
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/bucketItemName"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:paddingLeft="30sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
     <TextView
         android:id="@+id/bucketItemDate"
         android:textSize="15sp"
         android:paddingTop = "30sp"
+        android:paddingLeft="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,13 +23,14 @@ public class BucketListAdapter extends
         // for any view that will be set as you render a row
         public TextView nameTextView;
         public TextView dateTextView;
+        public CheckBox checkbox;
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
-
+            checkbox = (CheckBox) itemView.findViewById(R.id.checkbox);
             nameTextView = (TextView) itemView.findViewById(R.id.bucketItemName);
             dateTextView = (TextView) itemView.findViewById(R.id.bucketItemDate);
 
@@ -70,6 +72,7 @@ public class BucketListAdapter extends
     public void onBindViewHolder(BucketListAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         BucketItem bucket = mItems.get(position);
+        CheckBox checkbox = viewHolder.checkbox;
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
