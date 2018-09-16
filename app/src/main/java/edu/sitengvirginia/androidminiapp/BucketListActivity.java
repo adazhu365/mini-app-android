@@ -3,6 +3,7 @@ package edu.sitengvirginia.androidminiapp;
 //used idea from https://developer.android.com/guide/topics/ui/floating-action-button
 
 
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.content.Intent;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -41,7 +44,6 @@ public class BucketListActivity extends AppCompatActivity {
                 Intent add_intent = new Intent(BucketListActivity.this, AddItemActivity.class);
                 startActivityForResult(add_intent, req_code);
 
-
             }
         });
 
@@ -52,5 +54,23 @@ public class BucketListActivity extends AppCompatActivity {
         rvItems.setAdapter(adapter);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = data.getData();
+
+                String name = data.getDataString();
+                Log.e("test", name);
+
+
+
+
+            }
+        }
+    }
+
 
 }
