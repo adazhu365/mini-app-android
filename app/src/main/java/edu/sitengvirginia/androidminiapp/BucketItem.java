@@ -1,5 +1,7 @@
 package edu.sitengvirginia.androidminiapp;
 
+// date parsing idea from https://stackoverflow.com/questions/10774871/best-way-to-compare-dates-in-android
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +25,11 @@ public class BucketItem {
 
     public static BucketItem createBucketItem(String name, String description, String latitude, String longitude, String date) {
         BucketItem b = new BucketItem(name, description, latitude, longitude, date);
+        return b;
+    }
+
+    public static BucketItem editBucketItem(BucketItem b, String name, String description, String latitude, String longitude, String date) {
+        b = new BucketItem(name, description, latitude, longitude, date);
         return b;
     }
 

@@ -1,6 +1,8 @@
 package edu.sitengvirginia.androidminiapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +13,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.sitengvirginia.androidminiapp.BucketListActivity;
+
+
+
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class BucketListAdapter extends
         RecyclerView.Adapter<BucketListAdapter.ViewHolder> {
-
+    static final int req_code = 2;
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -69,7 +75,7 @@ public class BucketListAdapter extends
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(BucketListAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(BucketListAdapter.ViewHolder viewHolder, final int position) {
         // Get the data model based on position
         BucketItem bucket = mItems.get(position);
         CheckBox checkbox = viewHolder.checkbox;
@@ -83,7 +89,17 @@ public class BucketListAdapter extends
         String dateDisplay = bucket.getMdate();
         dateView.setText(dateDisplay);
 
+        TextView editView = viewHolder.nameTextView;
+        editView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent edit_intent = new Intent(view.getContext(), EditItemActivity.class);
+                ((Activity) mContext).startActivityForResult(edit_intent, req_code);
+                edit_intent.putExtra("position", position);
+            }
+        });
         }
+
 
 
 

@@ -11,23 +11,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
-public class AddItemActivity extends AppCompatActivity {
+public class EditItemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_item);
+        setContentView(R.layout.edit_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Button button = findViewById(R.id.button);
+        final TextView textview  = findViewById(R.id.button);
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        button.setOnClickListener(new View.OnClickListener() {
+        textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent receivedIntent = getIntent();
+                int position = receivedIntent.getIntExtra("position", 0);
                 EditText etName1 = (EditText) findViewById(R.id.editText);
                 EditText etName2 = (EditText) findViewById(R.id.editText2);
                 EditText etName3 = (EditText) findViewById(R.id.editText3);
@@ -39,12 +42,14 @@ public class AddItemActivity extends AppCompatActivity {
                 String date = ((Integer)year).toString() + "/" + ((Integer)month).toString()
                         + "/" + ((Integer)day).toString();
 
+
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("name", etName1.getText().toString());
                 resultIntent.putExtra("description", etName2.getText().toString());
                 resultIntent.putExtra("latitude", etName3.getText().toString());
                 resultIntent.putExtra("longitude", etName4.getText().toString());
                 resultIntent.putExtra("date", date);
+                resultIntent.putExtra("position", position);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }

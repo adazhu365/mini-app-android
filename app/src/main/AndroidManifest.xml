@@ -25,6 +25,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.sitengvirginia.androidminiapp.BucketListActivity" />
         </activity>
+        <activity
+            android:name=".EditItemActivity"
+            android:label="Edit_Item"
+            android:parentActivityName=".BucketListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.sitengvirginia.androidminiapp.BucketListActivity" />
+        </activity>
     </application>
 
 </manifest>

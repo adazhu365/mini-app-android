@@ -15,6 +15,7 @@ import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.content.Intent;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -36,6 +37,8 @@ public class BucketListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myList = BucketItem.createInitialBucketList();
+
 
         myButton = findViewById(R.id.button);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +54,7 @@ public class BucketListActivity extends AppCompatActivity {
             }
         });
 
-        myList = BucketItem.createInitialBucketList();
+
         Log.e("test", Integer.toString(myList.size()));
         rvItems = (RecyclerView) findViewById(R.id.rvItems);
         adapter = new BucketListAdapter(this, myList);
@@ -65,11 +68,6 @@ public class BucketListActivity extends AppCompatActivity {
         if (requestCode == 1) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                /*Uri resultUri = data.getData();
-
-                String name = data.getDataString();
-                Log.e("test", name);*/
-
                 String name = data.getStringExtra("name");
                 Log.e("test", name);
                 String description = data.getStringExtra("description");
@@ -78,6 +76,33 @@ public class BucketListActivity extends AppCompatActivity {
                 String date = data.getStringExtra("date");
                 BucketItem b = BucketItem.createBucketItem(name, description, latitude, longitude,date);
 
+                int l = 0;
+                for (int i = 0; i < myList.size(); i++) {
+                    try {
+                        l += BucketItem.compareTo(myList.get(i).getMdate(), date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                myList.add(l, b);
+                Log.e("test2", name);
+                adapter.notifyDataSetChanged();
+            }
+        }
+        if (requestCode == 2) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+
+                String name = data.getStringExtra("name");
+                Log.e("test", name);
+                String description = data.getStringExtra("description");
+                String latitude = data.getStringExtra("latitude");
+                String longitude = data.getStringExtra("longitude");
+                String date = data.getStringExtra("date");
+                int position = data.getIntExtra("position", 0);
+                BucketItem b = BucketItem.editBucketItem(myList.get(position), name, description, latitude, longitude, date);
+                myList.remove(myList.get(position));
                 int l = 0;
                 for (int i = 0; i < myList.size(); i++) {
                     try {
