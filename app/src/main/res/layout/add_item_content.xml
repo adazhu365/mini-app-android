@@ -16,7 +16,7 @@
         android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
          />
     <EditText
         android:id="@+id/editText2"
@@ -25,7 +25,7 @@
         android:layout_marginBottom="28dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Description"
+        android:hint="Description"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:layout_constraintStart_toStartOf="@+id/editText" />
     <EditText
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:text="Latitude"
+        android:hint="Latitude"
         app:layout_constraintStart_toStartOf="@+id/editText2"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
     <EditText
@@ -43,10 +43,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:text="Longitude"
+        android:hint="Longitude"
         app:layout_constraintStart_toStartOf="@+id/editText3"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
     <DatePicker
+        android:id="@+id/datepicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:endYear="2100"
@@ -55,4 +56,12 @@
         app:layout_constraintStart_toStartOf="@+id/editText4"
         app:layout_constraintTop_toBottomOf="@+id/editText4">
     </DatePicker>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Save New Item"
+        app:layout_constraintStart_toStartOf="@+id/datepicker"
+        app:layout_constraintTop_toBottomOf="@+id/datepicker"/>
 </android.support.constraint.ConstraintLayout>
