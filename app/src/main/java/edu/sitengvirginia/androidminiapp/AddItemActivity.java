@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+
+import java.text.SimpleDateFormat;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -24,16 +28,33 @@ public class AddItemActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText etName1 = (EditText) findViewById(R.id.editText);
+                EditText etName2 = (EditText) findViewById(R.id.editText2);
+                EditText etName3 = (EditText) findViewById(R.id.editText3);
+                EditText etName4 = (EditText) findViewById(R.id.editText4);
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                int day = ((DatePicker)findViewById(R.id.datepicker)).getDayOfMonth();
+                int month = ((DatePicker)findViewById(R.id.datepicker)).getMonth();
+                int year = ((DatePicker)findViewById(R.id.datepicker)).getYear();
+                String date = ((Integer)year).toString() + "/" + ((Integer)month).toString()
+                        + "/" + ((Integer)day).toString();
+
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("name", etName1.getText().toString());
+                resultIntent.putExtra("description", etName2.getText().toString());
+                resultIntent.putExtra("latitude", etName3.getText().toString());
+                resultIntent.putExtra("longitude", etName4.getText().toString());
+                resultIntent.putExtra("date", date);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
                 Snackbar.make(view, "NOTHING HERE", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Intent resultIntent = new Intent();
-// TODO Add extras or a data URI to this intent as appropriate.
-        resultIntent.putExtra("some_key", "String data");
 
-        setResult(Activity.RESULT_OK, resultIntent);
+
     }
+
 
 }

@@ -1,6 +1,9 @@
 package edu.sitengvirginia.androidminiapp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BucketItem {
     private String mname;
@@ -16,6 +19,11 @@ public class BucketItem {
         mlongitude = longitude;
         mdate = date;
 
+    }
+
+    public static BucketItem createBucketItem(String name, String description, String latitude, String longitude, String date) {
+        BucketItem b = new BucketItem(name, description, latitude, longitude, date);
+        return b;
     }
 
     public String getMname() {
@@ -36,14 +44,20 @@ public class BucketItem {
 
 
 
-    public int compareTo(String firstDate, String secondDate) {
-        return firstDate.compareTo(secondDate);
+    public static int compareTo(String firstDate, String secondDate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date first = sdf.parse(firstDate);
+        Date second = sdf.parse(secondDate);
+        if (first.after(second)) {
+            return 0;
+        }
+        return 1;
+
     }
 
     public static ArrayList<BucketItem> createInitialBucketList() {
         ArrayList<BucketItem> initialList = new ArrayList<BucketItem>();
         initialList.add(new BucketItem("Last Year", "whatever", "37.3", "38.4", "2017/7/27"));
-        initialList.add(new BucketItem("This Year", "whatever2", "37.33", "38.44", "2018/7/28"));
         return initialList;
     }
 }
