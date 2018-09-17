@@ -70,6 +70,10 @@ public class EditItemActivity extends AppCompatActivity {
 
 
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 }

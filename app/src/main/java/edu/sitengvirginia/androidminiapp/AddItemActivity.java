@@ -53,6 +53,11 @@ public class AddItemActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 
 }

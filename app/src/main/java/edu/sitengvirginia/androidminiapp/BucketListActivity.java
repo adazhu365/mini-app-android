@@ -5,8 +5,7 @@ package edu.sitengvirginia.androidminiapp;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import android.net.Uri;
+
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +15,7 @@ import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.content.Intent;
-import android.widget.TextView;
-
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 public class BucketListActivity extends AppCompatActivity{
 
@@ -38,13 +32,13 @@ public class BucketListActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
+            Log.e("test", "yaya");
             myList = BucketItem.createInitialBucketList();
         }
         else {
             Serializable mylist = savedInstanceState.getSerializable("key");
             myList = (ArrayList<BucketItem>) mylist;
         }
-
 
         myButton = findViewById(R.id.button);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -121,12 +115,16 @@ public class BucketListActivity extends AppCompatActivity{
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putSerializable("key", myList);
+        Log.e("test", savedInstanceState.toString());
+        Log.e("test", "yyy");
         super.onSaveInstanceState(savedInstanceState);
+
     }
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Serializable mylist = savedInstanceState.getSerializable("key");
+
         myList = (ArrayList<BucketItem>) mylist;
     }
 
