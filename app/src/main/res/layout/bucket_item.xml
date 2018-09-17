@@ -24,8 +24,8 @@
     <TextView
         android:id="@+id/bucketItemDate"
         android:textSize="15sp"
-        android:paddingTop = "30sp"
-        android:paddingLeft="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/bucketItemName"
+        app:layout_constraintLeft_toRightOf="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />

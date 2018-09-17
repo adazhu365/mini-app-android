@@ -124,6 +124,7 @@ public class BucketListAdapter extends
                 checkbox_intent.putExtra("longitude", bucket.getMlongitude());
                 ((Activity) mContext).startActivityForResult(checkbox_intent, 3);*/
                 Collections.sort(mItems);
+                notifyDataSetChanged();
             }
         });
     }
