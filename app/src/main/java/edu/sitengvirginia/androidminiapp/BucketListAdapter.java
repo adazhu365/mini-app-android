@@ -77,7 +77,7 @@ public class BucketListAdapter extends
     @Override
     public void onBindViewHolder(BucketListAdapter.ViewHolder viewHolder, final int position) {
         // Get the data model based on position
-        BucketItem bucket = mItems.get(position);
+        final BucketItem bucket = mItems.get(position);
         CheckBox checkbox = viewHolder.checkbox;
 
         // Set item views based on your views and data model
@@ -94,8 +94,14 @@ public class BucketListAdapter extends
             @Override
             public void onClick(View view) {
                 Intent edit_intent = new Intent(view.getContext(), EditItemActivity.class);
-                ((Activity) mContext).startActivityForResult(edit_intent, req_code);
                 edit_intent.putExtra("position", position);
+                edit_intent.putExtra("name", bucket.getMname());
+                edit_intent.putExtra("description", bucket.getMdescription());
+                edit_intent.putExtra("latitude", bucket.getMlatitude());
+                edit_intent.putExtra("longitude", bucket.getMlongitude());
+                edit_intent.putExtra("date", bucket.getMdate());
+                ((Activity) mContext).startActivityForResult(edit_intent, req_code);
+
             }
         });
         }

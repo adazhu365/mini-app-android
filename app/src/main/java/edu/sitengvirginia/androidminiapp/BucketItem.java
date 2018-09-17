@@ -2,12 +2,13 @@ package edu.sitengvirginia.androidminiapp;
 
 // date parsing idea from https://stackoverflow.com/questions/10774871/best-way-to-compare-dates-in-android
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BucketItem {
+public class BucketItem implements Serializable{
     private String mname;
     private String mdescription;
     private String mlatitude;

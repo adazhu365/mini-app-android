@@ -3,6 +3,7 @@ package edu.sitengvirginia.androidminiapp;
 //used idea from https://developer.android.com/guide/topics/ui/floating-action-button
 
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import android.net.Uri;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BucketListActivity extends AppCompatActivity {
+public class BucketListActivity extends AppCompatActivity{
 
     private FloatingActionButton myButton;
     RecyclerView rvItems;
@@ -36,8 +37,13 @@ public class BucketListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        myList = BucketItem.createInitialBucketList();
+        if (savedInstanceState == null) {
+            myList = BucketItem.createInitialBucketList();
+        }
+        else {
+            Serializable mylist = savedInstanceState.getSerializable("key");
+            myList = (ArrayList<BucketItem>) mylist;
+        }
 
 
         myButton = findViewById(R.id.button);
@@ -45,17 +51,11 @@ public class BucketListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                snackbar.make(view, "New item added", snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
                 Intent add_intent = new Intent(BucketListActivity.this, AddItemActivity.class);
                 startActivityForResult(add_intent, req_code);
-
             }
         });
 
-
-        Log.e("test", Integer.toString(myList.size()));
         rvItems = (RecyclerView) findViewById(R.id.rvItems);
         adapter = new BucketListAdapter(this, myList);
         rvItems.setAdapter(adapter);
@@ -118,6 +118,16 @@ public class BucketListActivity extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putSerializable("key", myList);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Serializable mylist = savedInstanceState.getSerializable("key");
+        myList = (ArrayList<BucketItem>) mylist;
+    }
 
 }
