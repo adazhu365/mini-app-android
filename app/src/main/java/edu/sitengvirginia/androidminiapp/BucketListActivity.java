@@ -54,7 +54,7 @@ public class BucketListActivity extends AppCompatActivity{
         adapter = new BucketListAdapter(this, myList);
         rvItems.setAdapter(adapter);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
-
+        adapter.notifyDataSetChanged();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -68,7 +68,7 @@ public class BucketListActivity extends AppCompatActivity{
                 String latitude = data.getStringExtra("latitude");
                 String longitude = data.getStringExtra("longitude");
                 String date = data.getStringExtra("date");
-                BucketItem b = BucketItem.createBucketItem(name, description, latitude, longitude,date);
+                BucketItem b = BucketItem.createBucketItem(name, description, latitude, longitude,date, false);
 
                 int l = 0;
                 for (int i = 0; i < myList.size(); i++) {
@@ -95,7 +95,8 @@ public class BucketListActivity extends AppCompatActivity{
                 String longitude = data.getStringExtra("longitude");
                 String date = data.getStringExtra("date");
                 int position = data.getIntExtra("position", 0);
-                BucketItem b = BucketItem.editBucketItem(myList.get(position), name, description, latitude, longitude, date);
+                boolean checked = data.getBooleanExtra("checked", false);
+                BucketItem b = BucketItem.editBucketItem(myList.get(position), name, description, latitude, longitude, date, checked);
                 myList.remove(myList.get(position));
                 int l = 0;
                 for (int i = 0; i < myList.size(); i++) {
@@ -111,6 +112,34 @@ public class BucketListActivity extends AppCompatActivity{
                 adapter.notifyDataSetChanged();
             }
         }
+        /*if (requestCode == 3) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+
+                String name = data.getStringExtra("name");
+                boolean checked = data.getBooleanExtra("checked", false);
+                int position = data.getIntExtra("position", 0);
+                String date = data.getStringExtra("date");
+                String description = data.getStringExtra("description");
+                String latitude = data.getStringExtra("latitude");
+                String longitude = data.getStringExtra("longitude");
+                BucketItem b = BucketItem.createBucketItem(name, description, latitude, longitude, date, checked);
+                int l = 0;
+                myList.remove(myList.get(position));
+                for (int i = 0; i < myList.size(); i++) {
+
+                    try {
+                        l += BucketItem.compareTo(myList.get(i), b);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                myList.add(l,b);
+                Log.e("test2", name);
+                adapter.notifyDataSetChanged();
+            }
+        }*/
+
     }
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {

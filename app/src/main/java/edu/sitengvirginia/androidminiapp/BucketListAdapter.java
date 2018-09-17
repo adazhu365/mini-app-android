@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import edu.sitengvirginia.androidminiapp.BucketListActivity;
@@ -100,12 +101,32 @@ public class BucketListAdapter extends
                 edit_intent.putExtra("latitude", bucket.getMlatitude());
                 edit_intent.putExtra("longitude", bucket.getMlongitude());
                 edit_intent.putExtra("date", bucket.getMdate());
+                edit_intent.putExtra("checked", bucket.getMchecked());
                 ((Activity) mContext).startActivityForResult(edit_intent, req_code);
 
             }
         });
-        }
-
+        final CheckBox complete = viewHolder.checkbox;
+        complete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Intent checkbox_intent = new Intent(view.getContext(), BucketListActivity.class);
+                if (complete.isChecked()) {
+                    checkbox_intent.putExtra("checked", true);
+                } else {
+                    checkbox_intent.putExtra("checked", false);
+                }
+                checkbox_intent.putExtra("name", bucket.getMname());
+                checkbox_intent.putExtra("position", position);
+                checkbox_intent.putExtra("date", bucket.getMdate());
+                checkbox_intent.putExtra("description", bucket.getMdescription());
+                checkbox_intent.putExtra("latitude", bucket.getMlatitude());
+                checkbox_intent.putExtra("longitude", bucket.getMlongitude());
+                ((Activity) mContext).startActivityForResult(checkbox_intent, 3);*/
+                Collections.sort(mItems);
+            }
+        });
+    }
 
 
 

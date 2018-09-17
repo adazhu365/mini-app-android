@@ -3,18 +3,13 @@ package edu.sitengvirginia.androidminiapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 public class EditItemActivity extends AppCompatActivity {
 
@@ -53,7 +48,7 @@ public class EditItemActivity extends AppCompatActivity {
                 int year = ((DatePicker)findViewById(R.id.datepicker)).getYear();
                 String date = ((Integer)year).toString() + "/" + ((Integer)month).toString()
                         + "/" + ((Integer)day).toString();
-
+                boolean checked = receivedIntent.getBooleanExtra("position", false);
 
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("name", etName1.getText().toString());
@@ -62,6 +57,7 @@ public class EditItemActivity extends AppCompatActivity {
                 resultIntent.putExtra("longitude", etName4.getText().toString());
                 resultIntent.putExtra("date", date);
                 resultIntent.putExtra("position", position);
+                resultIntent.putExtra("checked", checked);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
