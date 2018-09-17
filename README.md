@@ -11,8 +11,11 @@ Basic instructions on usage:
 1) click the add button on bottom right corner to add things to list
 2) fill in names, description, location details and dates about the event 
 3) click on items already listed to edit
-4) 
+4) click on the check button to mark as completed
 
-Any special info we need to run the app
+Any special info we need to run the app:
 
-Lessons learned (at least half a page)
+
+Lessons learned: 
+
+
