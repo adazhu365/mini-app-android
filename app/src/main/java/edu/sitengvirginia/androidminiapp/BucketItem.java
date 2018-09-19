@@ -50,6 +50,7 @@ public class BucketItem implements Serializable, Comparable<BucketItem>{
     public String getMdate() {
         return mdate;
     }
+    public void setMchecked(boolean val){this.mchecked=val; }
 
     public boolean getMchecked() {
         return mchecked;
@@ -57,10 +58,10 @@ public class BucketItem implements Serializable, Comparable<BucketItem>{
 
     public int compareTo(BucketItem b) {
         if(b.getMchecked() == true && this.getMchecked() == false) {
-            return 1;
+            return -1;
         }
         else if (b.getMchecked() == false && this.getMchecked() == true) {
-            return -1;
+            return 1;
         }
         else {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -77,10 +78,10 @@ public class BucketItem implements Serializable, Comparable<BucketItem>{
                 e.printStackTrace();
             }
             if (first.after(second)) {
-                return 1;
+                return -1;
             }
             else {
-                return -1;
+                return 1;
             }
         }
     }
@@ -99,6 +100,11 @@ public class BucketItem implements Serializable, Comparable<BucketItem>{
     public static ArrayList<BucketItem> createInitialBucketList() {
         ArrayList<BucketItem> initialList = new ArrayList<BucketItem>();
         initialList.add(new BucketItem("Last Year", "whatever", "37.3", "38.4", "2017/7/27", false));
+
+        initialList.add(new BucketItem("Last Year2", "whatever", "37.3", "38.4", "2018/8/27", false));
+
+        initialList.add(new BucketItem("Last Year3", "whatever", "37.3", "38.4", "2018/10/27", false));
+
         return initialList;
     }
 }

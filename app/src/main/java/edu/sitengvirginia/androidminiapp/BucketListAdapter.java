@@ -79,7 +79,7 @@ public class BucketListAdapter extends
     public void onBindViewHolder(BucketListAdapter.ViewHolder viewHolder, final int position) {
         // Get the data model based on position
         final BucketItem bucket = mItems.get(position);
-        CheckBox checkbox = viewHolder.checkbox;
+       // CheckBox checkbox = viewHolder.checkbox;
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
@@ -89,6 +89,9 @@ public class BucketListAdapter extends
         TextView dateView = viewHolder.dateTextView;
         String dateDisplay = bucket.getMdate();
         dateView.setText(dateDisplay);
+
+        final CheckBox complete = viewHolder.checkbox;
+        complete.setChecked(bucket.getMchecked());
 
         TextView editView = viewHolder.nameTextView;
         editView.setOnClickListener(new View.OnClickListener() {
@@ -106,10 +109,10 @@ public class BucketListAdapter extends
 
             }
         });
-        final CheckBox complete = viewHolder.checkbox;
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 /*Intent checkbox_intent = new Intent(view.getContext(), BucketListActivity.class);
                 if (complete.isChecked()) {
                     checkbox_intent.putExtra("checked", true);
@@ -123,6 +126,12 @@ public class BucketListAdapter extends
                 checkbox_intent.putExtra("latitude", bucket.getMlatitude());
                 checkbox_intent.putExtra("longitude", bucket.getMlongitude());
                 ((Activity) mContext).startActivityForResult(checkbox_intent, 3);*/
+                if (bucket.getMchecked()){
+                    bucket.setMchecked(false);
+                }
+                else{
+                    bucket.setMchecked(true);
+                }
                 Collections.sort(mItems);
                 notifyDataSetChanged();
             }
